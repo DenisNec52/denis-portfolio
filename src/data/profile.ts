@@ -115,6 +115,7 @@ export const profile: Profile = {
         "Password hashate con bcrypt, validazione con express-validator",
       ],
       stack: ["React", "React Bootstrap", "Node.js", "Express", "MongoDB", "JWT"],
+      repoUrl: "https://github.com/DenisNec52/todo-app",
     },
     {
       name: "Pinterest Capstone",
