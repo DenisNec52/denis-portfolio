@@ -1,0 +1,40 @@
+@import "tailwindcss";
+
+/* Runtime tokens: the style switcher only rewrites --skin-color, dark mode swaps the rest. */
+:root {
+  --skin-color: #ec1839;
+  --bg-main: #f2f2fc;
+  --bg-card: #fdf9ff;
+  --bg-soft: #e8dfec;
+  --text-main: #302e4d;
+  --text-soft: #504e70;
+}
+
+:root.dark {
+  --bg-main: #151515;
+  --bg-card: #222222;
+  --bg-soft: #393939;
+  --text-main: #ffffff;
+  --text-soft: #c9c9c9;
+}
+
+/* `inline` makes utilities reference the live var, so runtime changes apply instantly. */
+@theme inline {
+  --font-sans: "Poppins", ui-sans-serif, system-ui, sans-serif;
+  --color-skin: var(--skin-color);
+  --color-bg-main: var(--bg-main);
+  --color-bg-card: var(--bg-card);
+  --color-bg-soft: var(--bg-soft);
+  --color-text-main: var(--text-main);
+  --color-text-soft: var(--text-soft);
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  background: var(--bg-main);
+  color: var(--text-main);
+  transition: background-color 0.3s ease;
+}
