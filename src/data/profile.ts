@@ -50,9 +50,9 @@ export const profile: Profile = {
     "Nel 2024 ho completato il percorso Full-Stack Web Development di Epicode e da allora costruisco applicazioni complete: frontend React tipizzato, API REST con Node.js ed Express, database MongoDB e PostgreSQL, autenticazione sicura e deploy containerizzato.",
   ],
   location: "Torino, Italia",
-  // TODO(Denis): email pubblica e profilo GitHub/LinkedIn
+  // TODO(Denis): email pubblica e profilo LinkedIn
   email: undefined,
-  github: undefined,
+  github: "https://github.com/DenisNec52",
   linkedin: undefined,
   skills: [
     { area: "Frontend", items: ["React", "TypeScript", "Vite", "Tailwind CSS", "Zustand", "React Query"] },
@@ -92,6 +92,8 @@ export const profile: Profile = {
         "Dashboard con grafici Recharts e stato globale con Zustand + React Query",
       ],
       stack: ["React", "Vite", "Tailwind", "Zustand", "React Query", "Node.js", "Express", "MongoDB"],
+      repoUrl: "https://github.com/DenisNec52/warehouse-manager",
+      liveUrl: "https://warehouse-manager-ruby.vercel.app",
     },
     {
       name: "Gestione Spese Personali",
@@ -102,6 +104,8 @@ export const profile: Profile = {
         "Grafici Recharts caricati in lazy: bundle iniziale ridotto del 63%",
       ],
       stack: ["React", "TypeScript", "React Query", "Tailwind", "Express 5", "PostgreSQL", "Drizzle", "OpenAPI", "Docker"],
+      repoUrl: "https://github.com/DenisNec52/money-tracker",
+      liveUrl: "https://money-tracker-eight-delta.vercel.app",
     },
     {
       name: "Todo App",
