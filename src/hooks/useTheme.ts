@@ -20,8 +20,25 @@ const STORAGE_KEY = "portfolio-theme";
  *  - the defaults: mode "light", skin SKIN_COLORS[0]
  */
 function getInitialTheme(): ThemeState {
-  // TODO(Denis): implement the priority between saved choice, OS preference and defaults.
-  return { mode: "light", skin: SKIN_COLORS[0] };
+  const defaultSkin: string = SKIN_COLORS[0];
+
+  // 1. Saved choice wins. Storage access can throw (private mode) and the value can be corrupt JSON.
+  try {
+    const raw = localStorage.getItem(STORAGE_KEY);
+    if (raw) {
+      const saved = JSON.parse(raw) as Partial<ThemeState>;
+      if (saved.mode === "light" || saved.mode === "dark") {
+        const skin = (SKIN_COLORS as readonly string[]).includes(saved.skin ?? "") ? saved.skin! : defaultSkin;
+        return { mode: saved.mode, skin };
+      }
+    }
+  } catch {
+    // fall through to OS preference
+  }
+
+  // 2. Nothing valid saved: the OS knows light/dark, not the accent color.
+  const prefersDark = window.matchMedia?.("(prefers-color-scheme: dark)").matches ?? false;
+  return { mode: prefersDark ? "dark" : "light", skin: defaultSkin };
 }
 
 export default function useTheme() {
