@@ -116,6 +116,7 @@ export const profile: Profile = {
       ],
       stack: ["React", "React Bootstrap", "Node.js", "Express", "MongoDB", "JWT"],
       repoUrl: "https://github.com/DenisNec52/todo-app",
+      liveUrl: "https://todo-app-six-rho-53.vercel.app",
     },
     {
       name: "Pinterest Capstone",
