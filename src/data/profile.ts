@@ -65,7 +65,7 @@ export const profile: Profile = {
       period: "2023 — 2024",
       title: "Epicode — Full-Stack Web Developer (WDPT0523IT)",
       description:
-        "Certificazione conseguita a giugno 2024. HTML, CSS, JavaScript, React, Node.js, Express, MongoDB, con progetto capstone full-stack.",
+        "Certificazione conseguita a giugno 2024. HTML, CSS, JavaScript, React, Node.js, Express, MongoDB.",
     },
   ],
   experience: [
@@ -73,7 +73,7 @@ export const profile: Profile = {
       period: "2024 — oggi",
       title: "Full-Stack Developer",
       description:
-        "Sviluppo di applicazioni web complete: gestionale di magazzino con ruoli utente, app con autenticazione JWT, clone di Pinterest con upload immagini.",
+        "Sviluppo di applicazioni web complete: gestionale di magazzino con ruoli utente, app con autenticazione JWT, gestione spese con PostgreSQL.",
     },
     {
       period: "Prima del 2024",
@@ -117,16 +117,6 @@ export const profile: Profile = {
       stack: ["React", "React Bootstrap", "Node.js", "Express", "MongoDB", "JWT"],
       repoUrl: "https://github.com/DenisNec52/todo-app",
       liveUrl: "https://todo-app-six-rho-53.vercel.app",
-    },
-    {
-      name: "Pinterest Capstone",
-      summary: "Clone di Pinterest: progetto finale del percorso Epicode.",
-      highlights: [
-        "Griglia masonry di pin con upload immagini",
-        "Autenticazione con Passport JWT, stato gestito con Redux",
-        "Email transazionali con MailerSend",
-      ],
-      stack: ["React", "Redux", "Material UI", "Node.js", "Express", "MongoDB", "Passport"],
     },
   ],
 };
