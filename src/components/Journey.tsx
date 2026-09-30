@@ -1,6 +1,7 @@
 import { ArrowLeft, Award } from "lucide-react";
 import { journey, type JourneyEntry, type JourneyPhase } from "../data/journey";
-import { onInternalLink } from "../hooks/useRoute";
+import { Link } from "react-router";
+import usePageTitle from "../hooks/usePageTitle";
 import ProjectCard, { ProjectLinks } from "./ProjectCard";
 import SectionTitle from "./SectionTitle";
 
@@ -76,16 +77,13 @@ function Phase({ phase }: { phase: JourneyPhase }) {
 }
 
 export default function Journey() {
+  usePageTitle("Percorso");
   return (
     <div className="min-h-screen px-6 py-16 md:px-12">
       <div className="mx-auto max-w-5xl">
-        <a
-          href="/#portfolio"
-          onClick={onInternalLink("/#portfolio")}
-          className="mb-8 inline-flex items-center gap-2 text-sm font-medium text-skin hover:underline"
-        >
+        <Link to="/progetti" className="mb-8 inline-flex items-center gap-2 text-sm font-medium text-skin hover:underline">
           <ArrowLeft className="h-4 w-4" /> Torna ai progetti
-        </a>
+        </Link>
         <SectionTitle>Il mio percorso</SectionTitle>
         <p className="-mt-6 mb-12 max-w-3xl text-lg text-text-soft">
           Tutti i lavori in ordine cronologico, dai primi esercizi del bootcamp ai progetti di oggi.

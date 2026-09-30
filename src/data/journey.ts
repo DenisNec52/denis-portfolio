@@ -12,6 +12,8 @@ export interface JourneyEntry {
   highlights?: string[];
   repoUrl?: string;
   liveUrl?: string;
+  /** Pagina di dettaglio /progetti/:slug, solo per i progetti in evidenza */
+  slug?: string;
 }
 
 export interface JourneyPhase {

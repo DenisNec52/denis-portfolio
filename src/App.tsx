@@ -1,34 +1,26 @@
-import About from "./components/About";
-import Contact from "./components/Contact";
-import Home from "./components/Home";
+import { BrowserRouter, Route, Routes } from "react-router";
 import Journey from "./components/Journey";
-import Projects from "./components/Projects";
-import Sidebar from "./components/Sidebar";
-import StyleSwitcher from "./components/StyleSwitcher";
-import { profile } from "./data/profile";
-import { usePathname, useRouteEffects } from "./hooks/useRoute";
+import Layout from "./components/Layout";
+import AboutPage from "./pages/AboutPage";
+import HomePage from "./pages/HomePage";
+import NotFoundPage from "./pages/NotFoundPage";
+import ProjectDetailPage from "./pages/ProjectDetailPage";
+import ProjectsPage from "./pages/ProjectsPage";
 
+// Il refresh su ogni rotta funziona grazie al rewrite verso index.html in vercel.json
 export default function App() {
-  const pathname = usePathname();
-  const isJourney = pathname.replace(/\/$/, "") === "/percorso";
-  useRouteEffects(pathname, isJourney ? `Percorso — ${profile.shortName} Necula` : "Denis Necula — Full-Stack Developer");
-
   return (
-    <>
-      <Sidebar pathname={pathname} />
-      <StyleSwitcher />
-      <main className="lg:pl-[270px]">
-        {isJourney ? (
-          <Journey />
-        ) : (
-          <>
-            <Home />
-            <About />
-            <Projects />
-            <Contact />
-          </>
-        )}
-      </main>
-    </>
+    <BrowserRouter>
+      <Routes>
+        <Route element={<Layout />}>
+          <Route index element={<HomePage />} />
+          <Route path="chi-sono" element={<AboutPage />} />
+          <Route path="progetti" element={<ProjectsPage />} />
+          <Route path="progetti/:slug" element={<ProjectDetailPage />} />
+          <Route path="percorso" element={<Journey />} />
+          <Route path="*" element={<NotFoundPage />} />
+        </Route>
+      </Routes>
+    </BrowserRouter>
   );
 }

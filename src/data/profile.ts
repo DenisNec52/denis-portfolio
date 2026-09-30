@@ -14,6 +14,8 @@ export interface SkillGroup {
 }
 
 export interface Project {
+  /** Usato nell'URL della pagina di dettaglio: /progetti/:slug */
+  slug: string;
   name: string;
   summary: string;
   highlights: string[];
@@ -84,6 +86,7 @@ export const profile: Profile = {
   ],
   projects: [
     {
+      slug: "warehouse-pro",
       name: "Warehouse Pro",
       summary: "Gestionale di magazzino full-stack con dashboard, grafici e gestione ruoli.",
       highlights: [
@@ -96,6 +99,7 @@ export const profile: Profile = {
       liveUrl: "https://warehouse-manager-ruby.vercel.app",
     },
     {
+      slug: "gestione-spese",
       name: "Gestione Spese Personali",
       summary: "Entrate e uscite con grafici mensili, spese per categoria e riepilogo per periodo.",
       highlights: [
@@ -108,6 +112,7 @@ export const profile: Profile = {
       liveUrl: "https://money-tracker-eight-delta.vercel.app",
     },
     {
+      slug: "todo-app",
       name: "Todo App",
       summary: "Gestione attività con registrazione e login, API REST protetta.",
       highlights: [

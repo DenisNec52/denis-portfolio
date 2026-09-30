@@ -1,4 +1,5 @@
-import { ExternalLink } from "lucide-react";
+import { ArrowRight, ExternalLink } from "lucide-react";
+import { Link } from "react-router";
 import { GithubIcon } from "./BrandIcons";
 
 export interface ProjectCardData {
@@ -9,9 +10,11 @@ export interface ProjectCardData {
   repoUrl?: string;
   liveUrl?: string;
   period?: string;
+  /** Se presente, la card porta alla pagina di dettaglio /progetti/:slug */
+  slug?: string;
 }
 
-// Card condivisa tra la sezione Progetti della home e la pagina /percorso
+// Card condivisa tra home, /progetti e /percorso
 export default function ProjectCard({ project }: { project: ProjectCardData }) {
   return (
     <article className="flex flex-col rounded-2xl border-t-4 border-skin bg-bg-card p-6 shadow-sm transition hover:-translate-y-1">
@@ -35,7 +38,20 @@ export default function ProjectCard({ project }: { project: ProjectCardData }) {
           </span>
         ))}
       </div>
-      <ProjectLinks project={project} className="mt-4" />
+      {(project.slug || project.repoUrl || project.liveUrl) && (
+        <div className="mt-4 flex items-center justify-between gap-4">
+          <ProjectLinks project={project} />
+          {project.slug && (
+            <Link
+              to={`/progetti/${project.slug}`}
+              className="ml-auto inline-flex items-center gap-1 text-sm font-medium text-skin hover:underline"
+              aria-label={`Dettagli di ${project.name}`}
+            >
+              Dettagli <ArrowRight className="h-4 w-4" />
+            </Link>
+          )}
+        </div>
+      )}
     </article>
   );
 }

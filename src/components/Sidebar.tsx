@@ -1,41 +1,20 @@
 import { FolderGit2, Home, Mail, Menu, Route, User, X, type LucideIcon } from "lucide-react";
-import { useEffect, useState } from "react";
+import { useState } from "react";
+import { Link, useLocation } from "react-router";
 import { profile } from "../data/profile";
-import { onInternalLink } from "../hooks/useRoute";
 
-// Sezioni della home (ancore) e pagina del percorso
-const LINKS: { id: string; to: string; label: string; icon: LucideIcon }[] = [
-  { id: "home", to: "/#home", label: "Home", icon: Home },
-  { id: "about", to: "/#about", label: "Chi sono", icon: User },
-  { id: "portfolio", to: "/#portfolio", label: "Progetti", icon: FolderGit2 },
-  { id: "percorso", to: "/percorso", label: "Percorso", icon: Route },
-  { id: "contact", to: "/#contact", label: "Contatti", icon: Mail },
+const LINKS: { to: string; label: string; icon: LucideIcon; isActive: (path: string, hash: string) => boolean }[] = [
+  { to: "/", label: "Home", icon: Home, isActive: (p, h) => p === "/" && h !== "#contact" },
+  { to: "/chi-sono", label: "Chi sono", icon: User, isActive: (p) => p === "/chi-sono" },
+  { to: "/progetti", label: "Progetti", icon: FolderGit2, isActive: (p) => p.startsWith("/progetti") },
+  { to: "/percorso", label: "Percorso", icon: Route, isActive: (p) => p === "/percorso" },
+  { to: "/#contact", label: "Contatti", icon: Mail, isActive: (p, h) => p === "/" && h === "#contact" },
 ];
 
-// Highlights the section currently in view (only on the home page).
-function useActiveSection(enabled: boolean) {
-  const [active, setActive] = useState("home");
-  useEffect(() => {
-    if (!enabled) return;
-    const observer = new IntersectionObserver(
-      (entries) => entries.forEach((e) => e.isIntersecting && setActive(e.target.id)),
-      { rootMargin: "-45% 0px -50% 0px" },
-    );
-    LINKS.forEach(({ id }) => {
-      const el = document.getElementById(id);
-      if (el) observer.observe(el);
-    });
-    return () => observer.disconnect();
-  }, [enabled]);
-  return active;
-}
-
-export default function Sidebar({ pathname }: { pathname: string }) {
+export default function Sidebar() {
   const [open, setOpen] = useState(false);
-  const onJourney = pathname.replace(/\/$/, "") === "/percorso";
-  const activeSection = useActiveSection(!onJourney);
-  const active = onJourney ? "percorso" : activeSection;
-  const close = () => setOpen(false);
+  const { pathname, hash } = useLocation();
+  const path = pathname.replace(/(.)\/$/, "$1");
 
   return (
     <>
@@ -52,26 +31,29 @@ export default function Sidebar({ pathname }: { pathname: string }) {
           open ? "translate-x-0" : "-translate-x-full"
         }`}
       >
-        <a href="/#home" onClick={onInternalLink("/#home", close)} className="mb-12 text-center text-3xl font-bold text-text-main">
+        <Link to="/" onClick={() => setOpen(false)} className="mb-12 text-center text-3xl font-bold text-text-main">
           <span className="text-skin">D</span>enis
           <span className="mt-1 block text-sm font-normal text-text-soft">{profile.role}</span>
-        </a>
-        <nav>
+        </Link>
+        <nav aria-label="Menu principale">
           <ul className="space-y-2">
-            {LINKS.map(({ id, to, label, icon: Icon }) => (
-              <li key={id}>
-                <a
-                  href={to}
-                  onClick={onInternalLink(to, close)}
-                  aria-current={active === id ? (id === "percorso" ? "page" : "location") : undefined}
-                  className={`flex items-center gap-3 border-b border-bg-soft px-4 py-2 font-medium transition hover:text-skin ${
-                    active === id ? "text-skin" : "text-text-main"
-                  }`}
-                >
-                  <Icon className="h-5 w-5" /> {label}
-                </a>
-              </li>
-            ))}
+            {LINKS.map(({ to, label, icon: Icon, isActive }) => {
+              const active = isActive(path, hash);
+              return (
+                <li key={to}>
+                  <Link
+                    to={to}
+                    onClick={() => setOpen(false)}
+                    aria-current={active ? "page" : undefined}
+                    className={`flex items-center gap-3 border-b border-bg-soft px-4 py-2 font-medium transition hover:text-skin ${
+                      active ? "text-skin" : "text-text-main"
+                    }`}
+                  >
+                    <Icon className="h-5 w-5" /> {label}
+                  </Link>
+                </li>
+              );
+            })}
           </ul>
         </nav>
       </aside>
