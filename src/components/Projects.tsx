@@ -13,7 +13,7 @@ export default function Projects({ variant }: { variant: "home" | "page" }) {
         <SectionTitle>{isHome ? "Progetti in evidenza" : "Progetti"}</SectionTitle>
         {!isHome && (
           <p className="-mt-6 mb-12 max-w-3xl text-lg text-text-soft">
-            I progetti più completi, pubblicati online con codice su GitHub. Apri i dettagli per stack, funzionalità e cosa ho imparato.
+            I progetti più completi, tutti online e provabili dal vivo. Apri i dettagli per stack, funzionalità e cosa ho imparato.
           </p>
         )}
         <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">

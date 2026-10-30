@@ -138,7 +138,8 @@ export const journey: JourneyPhase[] = [
           "Deploy con Docker su Render e frontend su Vercel",
         ],
         stack: ["Python", "FastAPI", "yt-dlp", "Docker"],
-        repoUrl: "https://github.com/DenisNec52/Youtube-downloader",
+        // Repo privato per ora: togli il commento quando torna pubblico.
+        // repoUrl: "https://github.com/DenisNec52/Youtube-downloader",
         liveUrl: "https://youtube-downloader-snowy-omega.vercel.app",
       },
       fromProfile("Gestione Spese Personali", "set 2026"),

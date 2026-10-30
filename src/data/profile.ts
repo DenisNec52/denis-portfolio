@@ -95,7 +95,8 @@ export const profile: Profile = {
         "Dashboard con grafici Recharts e stato globale con Zustand + React Query",
       ],
       stack: ["React", "Vite", "Tailwind", "Zustand", "React Query", "Node.js", "Express", "MongoDB"],
-      repoUrl: "https://github.com/DenisNec52/warehouse-manager",
+      // Repo privato per ora: togli il commento quando torna pubblico.
+      // repoUrl: "https://github.com/DenisNec52/warehouse-manager",
       liveUrl: "https://warehouse-manager-ruby.vercel.app",
     },
     {
@@ -108,7 +109,8 @@ export const profile: Profile = {
         "Grafici Recharts caricati in lazy: bundle iniziale ridotto del 63%",
       ],
       stack: ["React", "TypeScript", "React Query", "Tailwind", "Express 5", "PostgreSQL", "Drizzle", "OpenAPI", "Docker"],
-      repoUrl: "https://github.com/DenisNec52/money-tracker",
+      // Repo privato per ora: togli il commento quando torna pubblico.
+      // repoUrl: "https://github.com/DenisNec52/money-tracker",
       liveUrl: "https://money-tracker-eight-delta.vercel.app",
     },
     {
@@ -120,7 +122,8 @@ export const profile: Profile = {
         "Password hashate con bcrypt, validazione con express-validator",
       ],
       stack: ["React", "React Bootstrap", "Node.js", "Express", "MongoDB", "JWT"],
-      repoUrl: "https://github.com/DenisNec52/todo-app",
+      // Repo privato per ora: togli il commento quando torna pubblico.
+      // repoUrl: "https://github.com/DenisNec52/todo-app",
       liveUrl: "https://todo-app-six-rho-53.vercel.app",
     },
   ],
